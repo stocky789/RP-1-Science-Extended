@@ -282,6 +282,13 @@ if (Test-Path -LiteralPath $capsulePatchPath) {
   if ($capsulePatch -match 'RP1ES_ThreeYearStationOperationsReliabilityStudy') {
     $errors.Add("Station operations reliability study should not be available on capsule patches.")
   }
+
+  if ($capsulePatch -notmatch 'Extended Crew Science') {
+    $errors.Add('Capsule patch should add generic Extended Crew Science Configure for non-RP-1 capsuleTier crew parts.')
+  }
+  if ($capsulePatch -notmatch '~#capsuleTier\[StationPrototypeAndDevelopment\]') {
+    $errors.Add('Capsule patch should exclude RP-1 station crew capsuleTier from generic Configure (avoid duplicate with Crew Science).')
+  }
 }
 
 if ($errors.Count -gt 0) {

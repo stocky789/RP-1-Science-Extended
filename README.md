@@ -14,7 +14,7 @@ RP-1 Extended Science is a Kerbalism config mod for RP-1 that adds long-duration
 Version `v1.0.0` includes:
 
 - 20 Kerbalism long-run experiments (Earth/Moon station line plus late planetary-orbit extensions).
-- Experiments are Kerbalism **Configure** options (not always-on modules): capsules extend RP-1’s existing **Crew Science** picker; station habs get a separate **Long-Duration Crew Science** picker with tiered slot counts.
+- Experiments are Kerbalism **Configure** options (not always-on modules): capsules extend RP-1’s existing **Crew Science** picker; crew parts without that (typical mod hulls) get a separate **Extended Crew Science** picker; station habs use **Long-Duration Crew Science** with tiered slot counts.
 - Capsule support for the shorter non-station crew studies up to three years (same pattern as stock RP-1 capsule experiments such as Orbital Maneuvering).
 - RP-1 station-tier progression for which studies appear on which hab parts.
 - CKAN metadata (identifier `RP1ExtendedScience`) and `.version` (KSP-AVC) for installs under `GameData/RP-1-Extended Science`.
@@ -36,7 +36,7 @@ Kerbalism treats completed dataset size as `scienceCap * dataScale` (MiB). These
 
 Each experiment’s **minimum crew** is set to match what the title and description imply (for example, one for solo morale or computer-adaptation logging, two for paired medical or maintenance work, three for group behavioral and isolation instruments or most planetary-orbit campaigns, four for multi-decade crew turnover and the fifteen-year Venus/Mars closed-loop capstone).
 
-Short non-station crew studies are optional **Crew Science** loadouts on regular crewed vehicles (only where RP-1 already defines that Configure block). That gives recurring capsule launches a purpose without stuffing the part menu, and without offering station-only reliability or closed-loop habitation work in the capsule list.
+Short non-station crew studies are optional configure loadouts: RP-1 vehicles use **Crew Science** where RP-1 defines it; other crewed parts use **Extended Crew Science**. That keeps the part menu clean and avoids offering station-only work on generic crew hulls.
 
 ## Dependencies
 
@@ -85,30 +85,3 @@ Optional part packs (CKAN `suggests` / `supports`; not required for the configs 
 ## Installation
 
 Install through CKAN once the NetKAN entry is published, or copy the `RP-1-Extended Science` folder from this repo’s `GameData` tree into your KSP `GameData` directory (you should end up with `GameData/RP-1-Extended Science/...` next to your other mods).
-
-## Development Notes
-
-- Experiment IDs use the `RP1ES_` prefix.
-- The mod does not reuse RP-1's `RP0...` experiment namespace.
-- The configs are written as pure ModuleManager patches, so there is no DLL or plugin code.
-- AVC metadata lives at `GameData/RP-1-Extended Science/RP1ExtendedScience.version` and tracks `v1.0.0` until the next release.
-- Integration follows RP-1’s own Kerbalism patterns (`GameData/RP-1/Science/Configure.cfg`: `MODULE[Configure]` / `SETUP` / `type = Experiment` with `id_field` + `id_value`).
-
-## Validation
-
-Run:
-
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\Validate-Project.ps1
-```
-
-This checks:
-
-- required repo files (including `GameData/RP-1-Extended Science/...`) exist
-- all 20 experiment IDs are present and unique, titles are unique, and there are no stray `RP0` experiment references
-- each experiment’s `situationMask`, `celestialBodies`, Kerbalism `BodyAllowed`, and `dataScale = 0.1` match the expected rules
-- station and capsule patch files reference the expected experiment IDs (capsules deliberately omit station-only studies)
-- the NetKAN stub matches expected fields and `v1.0.0` is reflected in the `.version` file
-
-If you have PowerShell 7 installed, you can run the same file with `pwsh` instead of `powershell`.
-
