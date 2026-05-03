@@ -19,7 +19,6 @@ Version `v1.0.0` includes:
 - RP-1 station-tier progression for which studies appear on which hab parts.
 - CKAN metadata (identifier `RP1ExtendedScience`) and `.version` (KSP-AVC) for installs under `GameData/RP-1-Extended Science`.
 - `docs/infographic.html` as a browser/print-friendly overview of the same experiment sheet as the table below.
-- A PowerShell validation script and GitHub Actions workflow that run it on each push and pull request.
 
 ## Balance Model
 

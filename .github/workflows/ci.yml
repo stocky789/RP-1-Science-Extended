@@ -1,0 +1,77 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main]
+    paths:
+      - 'GameData/**'
+      - 'scripts/**'
+      - 'RP1ExtendedScience.netkan'
+      - 'CHANGELOG.md'
+      - '.github/workflows/**'
+  pull_request:
+    paths:
+      - 'GameData/**'
+      - 'scripts/**'
+      - 'RP1ExtendedScience.netkan'
+      - 'CHANGELOG.md'
+      - '.github/workflows/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: write
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  netkan-yaml:
+    name: NetKAN (YAML parse)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Parse NetKAN as YAML
+        run: |
+          python -m pip install --disable-pip-version-check -q pyyaml
+          python -c "import yaml; yaml.safe_load(open('RP1ExtendedScience.netkan', encoding='utf-8'))"
+
+  validate:
+    name: Validate configs
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run validation
+        id: validate
+        shell: pwsh
+        run: .\scripts\Validate-Project.ps1
+      - name: Build release zip
+        if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork == false)
+        shell: pwsh
+        run: .\scripts\Build-Release.ps1 -SkipValidate
+      - name: Upload zip artifact
+        if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork == false)
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ github.event_name == 'pull_request' && format('RP-1-Science-Extended-PR-{0}', github.event.pull_request.number) || format('RP-1-Science-Extended-manual-{0}', github.run_id) }}
+          path: dist/*.zip
+          if-no-files-found: error
+      - name: Job summary
+        if: always()
+        shell: pwsh
+        run: |
+          @'
+          ## CI results
+
+          - **NetKAN YAML**: parallel job on Ubuntu parses `RP1ExtendedScience.netkan` with PyYAML.
+          - **Validate configs**: this job runs `scripts/Validate-Project.ps1` (required files, experiment IDs, patch wiring).
+          - **Zip artifact**: uploaded on `workflow_dispatch` and on pull requests from branches on this repo (not forks); fork contributors can run `scripts/Build-Release.ps1` locally.
+
+          Open the logs above for errors and timings.
+          '@ | Out-File -FilePath $env:GITHUB_STEP_SUMMARY -Append -Encoding utf8

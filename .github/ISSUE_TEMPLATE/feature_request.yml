@@ -1,0 +1,21 @@
+name: Feature request
+description: Idea for experiments, balance, or compatibility
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: Short context on career stage or part packs helps a lot.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or gap
+      description: What is missing or awkward today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: Concrete change you have in mind (optional).
+    validations:
+      required: false
