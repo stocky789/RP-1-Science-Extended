@@ -1,0 +1,13 @@
+*.zip
+*.ckan
+.vs/
+.vscode/
+bin/
+obj/
+TestResults/
+*.user
+*.suo
+*.log
+docs/
+dist/
+

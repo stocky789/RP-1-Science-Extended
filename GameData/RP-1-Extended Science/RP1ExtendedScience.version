@@ -1,0 +1,20 @@
+{
+  "NAME": "RP-1 Extended Science",
+  "URL": "https://raw.githubusercontent.com/stocky789/RP-1-Science-Extended/main/GameData/RP-1-Extended%20Science/RP1ExtendedScience.version",
+  "VERSION": {
+    "MAJOR": 1,
+    "MINOR": 0,
+    "PATCH": 0
+  },
+  "KSP_VERSION_MIN": {
+    "MAJOR": 1,
+    "MINOR": 12,
+    "PATCH": 3
+  },
+  "KSP_VERSION_MAX": {
+    "MAJOR": 1,
+    "MINOR": 12,
+    "PATCH": 5
+  }
+}
+

@@ -1,0 +1,45 @@
+spec_version: v1.34
+identifier: RP1ExtendedScience
+name: RP-1 Extended Science
+abstract: Long-duration station and planetary-orbit science experiments for RP-1 and Kerbalism.
+author:
+  - stocky789
+license: MIT
+$kref: '#/ckan/github/stocky789/RP-1-Science-Extended/asset_match/RP-1-Science-Extended-v[0-9]+\.[0-9]+\.[0-9]+\.zip'
+$vref: '#/ckan/ksp-avc'
+resources:
+  repository: https://github.com/stocky789/RP-1-Science-Extended
+  homepage: https://github.com/stocky789/RP-1-Science-Extended
+tags:
+  - config
+  - career
+  - crewed
+  - science
+depends:
+  - name: RP-1
+  - name: ModuleManager
+  - name: Kerbalism-Config-RO
+  - name: RealSolarSystem
+suggests:
+  - name: StationPartsExpansionRedux
+  - name: HabTech2
+  - name: CxAerospace
+  - name: RN-SalyutStations
+  - name: RN-Skylab
+  - name: RN-SovietSpacecraft
+  - name: NearFutureConstruction
+  - name: NearFutureElectrical
+  - name: NearFutureSolar
+  - name: ROCapsules
+  - name: ROTanks
+  - name: ROSolar
+supports:
+  - name: StationPartsExpansionRedux
+  - name: HabTech2
+  - name: CxAerospace
+  - name: RN-SalyutStations
+  - name: RN-Skylab
+  - name: RN-SovietSpacecraft
+install:
+  - find: 'GameData/RP-1-Extended Science'
+    install_to: GameData
