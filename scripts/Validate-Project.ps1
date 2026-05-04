@@ -96,7 +96,7 @@ if (Test-Path -LiteralPath $experimentsPath) {
       bodyAllowed = 'HomeBody'
     }
     'RP1ES_TwoYearMicrogravityAdaptationStudy' = @{
-      situationMask = '48'
+      situationMask = '16'
       celestialBodies = 'Earth;Moon'
       bodyAllowed = 'HomeBodyAndMoons'
     }
@@ -111,7 +111,7 @@ if (Test-Path -LiteralPath $experimentsPath) {
       bodyAllowed = 'HomeBody'
     }
     'RP1ES_FiveYearBoneMuscleCountermeasureTrial' = @{
-      situationMask = '48'
+      situationMask = '16'
       celestialBodies = 'Earth;Moon'
       bodyAllowed = 'HomeBodyAndMoons'
     }
@@ -121,37 +121,37 @@ if (Test-Path -LiteralPath $experimentsPath) {
       bodyAllowed = 'HomeBodyAndMoons'
     }
     'RP1ES_SixYearBehavioralHealthIsolationStudy' = @{
-      situationMask = '48'
+      situationMask = '32'
       celestialBodies = 'Earth;Moon'
       bodyAllowed = 'HomeBodyAndMoons'
     }
     'RP1ES_EightYearLifeSupportMaintenanceStudy' = @{
-      situationMask = '48'
+      situationMask = '16'
       celestialBodies = 'Earth;Moon'
       bodyAllowed = 'HomeBodyAndMoons'
     }
     'RP1ES_TenYearClosedLoopAtmosphereValidation' = @{
-      situationMask = '48'
+      situationMask = '16'
       celestialBodies = 'Earth;Moon'
       bodyAllowed = 'HomeBodyAndMoons'
     }
     'RP1ES_TwelveYearOrbitalGreenhouseOperationsStudy' = @{
-      situationMask = '48'
+      situationMask = '16'
       celestialBodies = 'Earth;Moon'
       bodyAllowed = 'HomeBodyAndMoons'
     }
     'RP1ES_FifteenYearClosedLoopHabitationDemonstration' = @{
-      situationMask = '48'
+      situationMask = '32'
       celestialBodies = 'Earth;Moon'
       bodyAllowed = 'HomeBodyAndMoons'
     }
     'RP1ES_TwentyYearGenerationalStationOperationsStudy' = @{
-      situationMask = '48'
+      situationMask = '16'
       celestialBodies = 'Earth;Moon'
       bodyAllowed = 'HomeBodyAndMoons'
     }
     'RP1ES_ThirtyYearPermanentHabitationSystemsTrial' = @{
-      situationMask = '48'
+      situationMask = '32'
       celestialBodies = 'Earth;Moon'
       bodyAllowed = 'HomeBodyAndMoons'
     }
@@ -161,22 +161,22 @@ if (Test-Path -LiteralPath $experimentsPath) {
       bodyAllowed = 'Mercury|Venus|Mars|Jupiter|Saturn|Uranus|Neptune|Pluto'
     }
     'RP1ES_EightYearAutonomousLifeSupportOperationsStudy' = @{
-      situationMask = '48'
+      situationMask = '32'
       celestialBodies = 'Venus;Mars'
       bodyAllowed = 'Venus|Mars'
     }
     'RP1ES_TenYearMarsOrbitHabitationSystemsTrial' = @{
-      situationMask = '48'
+      situationMask = '16'
       celestialBodies = 'Mars'
       bodyAllowed = 'Mars'
     }
     'RP1ES_TwelveYearPlanetaryOrbitBehavioralAutonomyStudy' = @{
-      situationMask = '48'
+      situationMask = '32'
       celestialBodies = 'Mercury;Venus;Mars;Jupiter;Saturn;Uranus;Neptune;Pluto'
       bodyAllowed = 'Mercury|Venus|Mars|Jupiter|Saturn|Uranus|Neptune|Pluto'
     }
     'RP1ES_FifteenYearPlanetaryOrbitClosedLoopHabitatDemonstration' = @{
-      situationMask = '48'
+      situationMask = '32'
       celestialBodies = 'Venus;Mars'
       bodyAllowed = 'Venus|Mars'
     }
@@ -297,4 +297,3 @@ if ($errors.Count -gt 0) {
 }
 
 Write-Host "Validation passed."
-
